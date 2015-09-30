@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,8 +16,76 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtg-fI-HeG">
+                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="easyDownload" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZhN-Lx-ukF"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GhA-ZJ-8Zo">
+                                <rect key="frame" x="16" y="40" width="568" height="186"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="568" id="0ZP-Qj-t0X"/>
+                                    <constraint firstAttribute="height" constant="186" id="Cgb-cB-Pjx"/>
+                                    <constraint firstAttribute="height" constant="186" id="pf6-5a-gRR"/>
+                                    <constraint firstAttribute="width" constant="568" id="wNk-Or-nrE"/>
+                                </constraints>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0ZP-Qj-t0X"/>
+                                        <exclude reference="Cgb-cB-Pjx"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="qtg-fI-HeG" secondAttribute="centerY" id="5fi-bp-ebh"/>
+                            <constraint firstAttribute="centerY" secondItem="qtg-fI-HeG" secondAttribute="centerY" id="63B-2L-x5u"/>
+                            <constraint firstItem="GhA-ZJ-8Zo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="5" id="6Pp-3I-W8F"/>
+                            <constraint firstItem="GhA-ZJ-8Zo" firstAttribute="centerY" secondItem="qtg-fI-HeG" secondAttribute="centerY" id="9R4-TU-z2H"/>
+                            <constraint firstItem="GhA-ZJ-8Zo" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="5" id="DbB-RM-Xt0"/>
+                            <constraint firstAttribute="centerX" secondItem="GhA-ZJ-8Zo" secondAttribute="centerX" id="G1s-hd-qkQ"/>
+                            <constraint firstItem="GhA-ZJ-8Zo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="IQh-Wp-HX2"/>
+                            <constraint firstItem="GhA-ZJ-8Zo" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="LVO-ZG-nDm"/>
+                            <constraint firstAttribute="centerX" secondItem="GhA-ZJ-8Zo" secondAttribute="centerX" id="LpQ-Ct-fhu"/>
+                            <constraint firstAttribute="centerX" secondItem="qtg-fI-HeG" secondAttribute="centerX" id="PVe-TB-0FM"/>
+                            <constraint firstItem="GhA-ZJ-8Zo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="U0j-5a-dA5"/>
+                            <constraint firstAttribute="centerX" secondItem="qtg-fI-HeG" secondAttribute="centerX" id="W0R-Gj-rXK"/>
+                            <constraint firstAttribute="centerY" secondItem="qtg-fI-HeG" secondAttribute="centerY" id="k7H-F7-Ojy"/>
+                            <constraint firstAttribute="centerX" secondItem="qtg-fI-HeG" secondAttribute="centerX" id="l4H-s3-Zc1"/>
+                            <constraint firstItem="qtg-fI-HeG" firstAttribute="top" secondItem="GhA-ZJ-8Zo" secondAttribute="bottom" constant="100" id="lsa-5H-5uf"/>
+                            <constraint firstItem="GhA-ZJ-8Zo" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="20" id="mWa-2G-wA3"/>
+                            <constraint firstItem="GhA-ZJ-8Zo" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="q92-eE-6lu"/>
+                            <constraint firstAttribute="centerX" secondItem="qtg-fI-HeG" secondAttribute="centerX" id="rNe-wy-YAG"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6Pp-3I-W8F"/>
+                                <exclude reference="9R4-TU-z2H"/>
+                                <exclude reference="DbB-RM-Xt0"/>
+                                <exclude reference="G1s-hd-qkQ"/>
+                                <exclude reference="IQh-Wp-HX2"/>
+                                <exclude reference="q92-eE-6lu"/>
+                                <exclude reference="5fi-bp-ebh"/>
+                                <exclude reference="PVe-TB-0FM"/>
+                                <exclude reference="W0R-Gj-rXK"/>
+                                <exclude reference="k7H-F7-Ojy"/>
+                                <exclude reference="lsa-5H-5uf"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="textOutput" destination="GhA-ZJ-8Zo" id="Wdv-vx-ccC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

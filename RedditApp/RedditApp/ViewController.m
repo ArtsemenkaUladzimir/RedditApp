@@ -8,7 +8,11 @@
 
 #import "ViewController.h"
 
+
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *textOutput;
+
+- (IBAction)easyDownload;
 
 @end
 
@@ -17,6 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (IBAction)easyDownload {
+    NSURL *url = [NSURL URLWithString:@"https://www.reddit.com/hot.json"];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    self.textOutput.text = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 }
 
 - (void)didReceiveMemoryWarning {
