@@ -68,7 +68,6 @@
 		E70274BC1BBC58F4008A1372 = {
 			isa = PBXGroup;
 			children = (
-				E76C7C8C1BBE8779006B7E34 /* Index */,
 				E70274C71BBC58F4008A1372 /* RedditApp */,
 				E70274E41BBC58F4008A1372 /* RedditAppTests */,
 				E70274C61BBC58F4008A1372 /* Products */,
@@ -87,6 +86,7 @@
 		E70274C71BBC58F4008A1372 /* RedditApp */ = {
 			isa = PBXGroup;
 			children = (
+				E76C7C8C1BBE8779006B7E34 /* Index */,
 				E70274CC1BBC58F4008A1372 /* AppDelegate.h */,
 				E70274CD1BBC58F4008A1372 /* AppDelegate.m */,
 				E70274D21BBC58F4008A1372 /* ViewController.h */,
@@ -133,6 +133,7 @@
 				E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */,
 			);
 			name = Index;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
