@@ -51,7 +51,14 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    self.textOutput.text = [[NSString alloc] initWithData:self.jsonData encoding:NSASCIIStringEncoding];
+    NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:self.jsonData options:NSJSONReadingMutableContainers error:nil];
+    NSMutableString *titlesStr = [NSMutableString new];
+    [[[JSON valueForKey:@"data"]valueForKey:@"children"]
+      enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSLog(@"%@", [[obj valueForKey:@"data"]valueForKey:@"title"]);
+          [titlesStr appendFormat:@"%@\n", [[obj valueForKey:@"data"]valueForKey:@"title"]];
+      }];
+    self.textOutput.text = titlesStr;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
