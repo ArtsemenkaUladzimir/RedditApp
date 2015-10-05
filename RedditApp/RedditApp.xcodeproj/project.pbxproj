@@ -16,6 +16,7 @@
 		E70274DC1BBC58F4008A1372 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70274DA1BBC58F4008A1372 /* LaunchScreen.xib */; };
 		E70274E81BBC58F4008A1372 /* RedditAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E70274E71BBC58F4008A1372 /* RedditAppTests.m */; };
 		E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */; };
+		E76C7C991BBEA70C006B7E34 /* DownloadController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C7C981BBEA70C006B7E34 /* DownloadController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		E70274E71BBC58F4008A1372 /* RedditAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedditAppTests.m; sourceTree = "<group>"; };
 		E76C7C891BBE876D006B7E34 /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexViewController.h; sourceTree = "<group>"; };
 		E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexViewController.m; sourceTree = "<group>"; };
+		E76C7C971BBEA6AA006B7E34 /* DownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadController.h; sourceTree = "<group>"; };
+		E76C7C981BBEA70C006B7E34 /* DownloadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 		E70274BC1BBC58F4008A1372 = {
 			isa = PBXGroup;
 			children = (
+				E76C7C981BBEA70C006B7E34 /* DownloadController.m */,
+				E76C7C971BBEA6AA006B7E34 /* DownloadController.h */,
 				E70274C71BBC58F4008A1372 /* RedditApp */,
 				E70274E41BBC58F4008A1372 /* RedditAppTests */,
 				E70274C61BBC58F4008A1372 /* Products */,
@@ -239,6 +244,7 @@
 				E70274CE1BBC58F4008A1372 /* AppDelegate.m in Sources */,
 				E70274D11BBC58F4008A1372 /* RedditApp.xcdatamodeld in Sources */,
 				E70274D41BBC58F4008A1372 /* ViewController.m in Sources */,
+				E76C7C991BBEA70C006B7E34 /* DownloadController.m in Sources */,
 				E70274CB1BBC58F4008A1372 /* main.m in Sources */,
 				E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */,
 			);
