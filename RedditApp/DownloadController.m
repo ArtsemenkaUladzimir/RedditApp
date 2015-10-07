@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DownloadController.h"
 
-
+// ToDo: Refactor
 @implementation APIDownload
 
 @synthesize delegate;

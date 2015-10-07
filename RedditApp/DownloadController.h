@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Vladimir. All rights reserved.
 //
 
+
+// ToDo: Refactor
 #ifndef RedditApp_DownloadController_h
 #define RedditApp_DownloadController_h
 
