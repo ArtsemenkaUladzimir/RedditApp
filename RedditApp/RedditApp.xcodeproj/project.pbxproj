@@ -10,13 +10,11 @@
 		E70274CB1BBC58F4008A1372 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E70274CA1BBC58F4008A1372 /* main.m */; };
 		E70274CE1BBC58F4008A1372 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E70274CD1BBC58F4008A1372 /* AppDelegate.m */; };
 		E70274D11BBC58F4008A1372 /* RedditApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E70274CF1BBC58F4008A1372 /* RedditApp.xcdatamodeld */; };
-		E70274D41BBC58F4008A1372 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E70274D31BBC58F4008A1372 /* ViewController.m */; };
 		E70274D71BBC58F4008A1372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E70274D51BBC58F4008A1372 /* Main.storyboard */; };
 		E70274D91BBC58F4008A1372 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E70274D81BBC58F4008A1372 /* Images.xcassets */; };
 		E70274DC1BBC58F4008A1372 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70274DA1BBC58F4008A1372 /* LaunchScreen.xib */; };
 		E70274E81BBC58F4008A1372 /* RedditAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E70274E71BBC58F4008A1372 /* RedditAppTests.m */; };
 		E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */; };
-		E76C7C991BBEA70C006B7E34 /* DownloadController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C7C981BBEA70C006B7E34 /* DownloadController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,8 +34,6 @@
 		E70274CC1BBC58F4008A1372 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E70274CD1BBC58F4008A1372 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E70274D01BBC58F4008A1372 /* RedditApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RedditApp.xcdatamodel; sourceTree = "<group>"; };
-		E70274D21BBC58F4008A1372 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E70274D31BBC58F4008A1372 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E70274D61BBC58F4008A1372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E70274D81BBC58F4008A1372 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E70274DB1BBC58F4008A1372 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -46,8 +42,6 @@
 		E70274E71BBC58F4008A1372 /* RedditAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedditAppTests.m; sourceTree = "<group>"; };
 		E76C7C891BBE876D006B7E34 /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexViewController.h; sourceTree = "<group>"; };
 		E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexViewController.m; sourceTree = "<group>"; };
-		E76C7C971BBEA6AA006B7E34 /* DownloadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadController.h; sourceTree = "<group>"; };
-		E76C7C981BBEA70C006B7E34 /* DownloadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +65,6 @@
 		E70274BC1BBC58F4008A1372 = {
 			isa = PBXGroup;
 			children = (
-				E76C7C981BBEA70C006B7E34 /* DownloadController.m */,
-				E76C7C971BBEA6AA006B7E34 /* DownloadController.h */,
 				E70274C71BBC58F4008A1372 /* RedditApp */,
 				E70274E41BBC58F4008A1372 /* RedditAppTests */,
 				E70274C61BBC58F4008A1372 /* Products */,
@@ -94,8 +86,6 @@
 				E76C7C8C1BBE8779006B7E34 /* Index */,
 				E70274CC1BBC58F4008A1372 /* AppDelegate.h */,
 				E70274CD1BBC58F4008A1372 /* AppDelegate.m */,
-				E70274D21BBC58F4008A1372 /* ViewController.h */,
-				E70274D31BBC58F4008A1372 /* ViewController.m */,
 				E70274D51BBC58F4008A1372 /* Main.storyboard */,
 				E70274D81BBC58F4008A1372 /* Images.xcassets */,
 				E70274DA1BBC58F4008A1372 /* LaunchScreen.xib */,
@@ -243,8 +233,6 @@
 			files = (
 				E70274CE1BBC58F4008A1372 /* AppDelegate.m in Sources */,
 				E70274D11BBC58F4008A1372 /* RedditApp.xcdatamodeld in Sources */,
-				E70274D41BBC58F4008A1372 /* ViewController.m in Sources */,
-				E76C7C991BBEA70C006B7E34 /* DownloadController.m in Sources */,
 				E70274CB1BBC58F4008A1372 /* main.m in Sources */,
 				E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */,
 			);
