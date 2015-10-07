@@ -227,6 +227,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="itemListTable" destination="Mb5-nd-dB5" id="BAr-F1-yHL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5O-Mi-Ro4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

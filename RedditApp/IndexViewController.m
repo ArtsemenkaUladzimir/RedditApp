@@ -11,7 +11,7 @@
 @interface IndexViewController ()
 
 @property (nonatomic, retain) NSMutableData *jsonData;
-@property (nonatomic, retain) NSArray* students;
+@property (nonatomic, retain) NSMutableArray *listTitle;
 
 @end
 
@@ -19,9 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //[self complexDownload];
-    self.students = [NSArray arrayWithObjects:@"Tom", @"Bill", @"Tom", @"Joe", @"Tom", nil];
+    self.listTitle = [NSMutableArray new];
+    [self complexDownload];
 }
 
 //////////////////////////////////// ToDo: Refactor //////////////////////////////////////
@@ -45,13 +44,15 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:self.jsonData options:NSJSONReadingMutableContainers error:nil];
-    NSMutableString *titlesStr = [NSMutableString new];
+    //NSMutableString *titlesStr = [NSMutableString new];
+    //NSMutableArray *listTitle = [NSMutableArray new];
     [[[JSON valueForKey:@"data"]valueForKey:@"children"]
      enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
          NSLog(@"%@", [[obj valueForKey:@"data"]valueForKey:@"title"]);
-         [titlesStr appendFormat:@"%@\n", [[obj valueForKey:@"data"]valueForKey:@"title"]];
+         [self.listTitle addObject:[[obj valueForKey:@"data"]valueForKey:@"title"]];
      }];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self.itemListTable reloadData];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -65,7 +66,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.students count];
+    return [self.listTitle count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -76,7 +77,7 @@
     if (cell == nil) {
         cell = [UITableViewCell new];
     }
-    cell.textLabel.text = [self.students objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.listTitle objectAtIndex:indexPath.row];
     return cell;
 }
 
