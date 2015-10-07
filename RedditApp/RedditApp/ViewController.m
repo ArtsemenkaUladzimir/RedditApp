@@ -32,41 +32,6 @@
     self.textOutput.text = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 }
 
-- (IBAction)complexDownload:(id)sender {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    NSURL *url = [NSURL URLWithString:@"https://www.reddit.com/hot.json"];
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    NSURLConnection *theConnection = [NSURLConnection connectionWithRequest:theRequest delegate:self];
-    if (theConnection) {
-        self.jsonData = [NSMutableData data];
-    } else {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        NSLog(@"Connection failed");
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.jsonData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:self.jsonData options:NSJSONReadingMutableContainers error:nil];
-    NSMutableString *titlesStr = [NSMutableString new];
-    [[[JSON valueForKey:@"data"]valueForKey:@"children"]
-      enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSLog(@"%@", [[obj valueForKey:@"data"]valueForKey:@"title"]);
-          [titlesStr appendFormat:@"%@\n", [[obj valueForKey:@"data"]valueForKey:@"title"]];
-      }];
-    self.textOutput.text = titlesStr;
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"%@", error);
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

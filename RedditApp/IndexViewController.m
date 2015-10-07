@@ -10,6 +10,9 @@
 
 @interface IndexViewController ()
 
+@property (nonatomic, retain) NSMutableData *jsonData;
+@property (nonatomic, retain) NSArray* students;
+
 @end
 
 @implementation IndexViewController
@@ -17,6 +20,64 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //[self complexDownload];
+    self.students = [NSArray arrayWithObjects:@"Tom", @"Bill", @"Tom", @"Joe", @"Tom", nil];
+}
+
+//////////////////////////////////// ToDo: Refactor //////////////////////////////////////
+- (IBAction)complexDownload {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    NSURL *url = [NSURL URLWithString:@"https://www.reddit.com/hot.json"];
+    NSURLRequest *theRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    
+    NSURLConnection *theConnection = [NSURLConnection connectionWithRequest:theRequest delegate:self];
+    if (theConnection) {
+        self.jsonData = [NSMutableData data];
+    } else {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        NSLog(@"Connection failed");
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [self.jsonData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:self.jsonData options:NSJSONReadingMutableContainers error:nil];
+    NSMutableString *titlesStr = [NSMutableString new];
+    [[[JSON valueForKey:@"data"]valueForKey:@"children"]
+     enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+         NSLog(@"%@", [[obj valueForKey:@"data"]valueForKey:@"title"]);
+         [titlesStr appendFormat:@"%@\n", [[obj valueForKey:@"data"]valueForKey:@"title"]];
+     }];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"%@", error);
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+}
+//////////////////////////////////// ToDo: End //////////////////////////////////////
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.students count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [UITableViewCell new];
+    }
+    cell.textLabel.text = [self.students objectAtIndex:indexPath.row];
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {
