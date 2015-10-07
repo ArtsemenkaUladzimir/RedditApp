@@ -11,7 +11,7 @@
 @interface IndexViewController ()
 
 @property (nonatomic, retain) NSMutableData *jsonData;
-@property (nonatomic, retain) NSMutableArray *listTitle;
+@property (nonatomic, retain) NSMutableArray *listItem;
 
 @end
 
@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.listTitle = [NSMutableArray new];
+    self.listItem = [NSMutableArray new];
     [self complexDownload];
 }
 
@@ -44,14 +44,12 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:self.jsonData options:NSJSONReadingMutableContainers error:nil];
-    //NSMutableString *titlesStr = [NSMutableString new];
-    //NSMutableArray *listTitle = [NSMutableArray new];
     [[[JSON valueForKey:@"data"]valueForKey:@"children"]
      enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-         NSLog(@"%@", [[obj valueForKey:@"data"]valueForKey:@"title"]);
-         [self.listTitle addObject:[[obj valueForKey:@"data"]valueForKey:@"title"]];
+         [self.listItem addObject:[obj valueForKey:@"data"]];
      }];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    NSLog(@"%@", [[JSON valueForKey:@"data"]valueForKey:@"children"]);
     [self.itemListTable reloadData];
 }
 
@@ -66,7 +64,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.listTitle count];
+    return [self.listItem count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,7 +75,21 @@
     if (cell == nil) {
         cell = [UITableViewCell new];
     }
-    cell.textLabel.text = [self.listTitle objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"title"];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSData *data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"thumbnail"]]];
+        if (data == nil) {
+            return;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.imageView.image = [UIImage imageWithData: data];
+//            [self.itemListTable beginUpdates];
+//            [self.itemListTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            [self.itemListTable endUpdates];
+        });
+    });
+    
     return cell;
 }
 
