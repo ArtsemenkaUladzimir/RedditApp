@@ -14,9 +14,7 @@
 @interface DownloadManager : NSObject {
 }
 
-@property (nonatomic, retain) NSString *someProperty;
-
-+ (id) getInstance;
++ (id) sharedManager;
 + (void) loadData:(NSString*)URL completionHandler:(void (^)(NSData *data, NSURLResponse *responce, NSError *error))completionHandler;
 
 @end

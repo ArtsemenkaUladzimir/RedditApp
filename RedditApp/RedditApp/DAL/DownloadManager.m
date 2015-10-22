@@ -7,18 +7,18 @@
 //
 #import "DownloadManager.h"
 
-static DownloadManager *instance = nil;
-
 @implementation DownloadManager
 
 #pragma mark Singleton Methods
 
-+ (id)getInstance {
-    @synchronized(self) {
-        if(instance == nil)
-            instance = [self new];
-    }
-    return instance;
++ (id)sharedManager {
+    static DownloadManager *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[DownloadManager alloc] init];
+    });
+    return sharedInstance;
+
 }
 
 + (void) loadData:(NSString*)URL completionHandler:(void (^)(NSData *data, NSURLResponse *responce, NSError *error))completionHandler {
