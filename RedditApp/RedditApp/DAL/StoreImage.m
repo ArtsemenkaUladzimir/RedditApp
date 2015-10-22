@@ -26,7 +26,7 @@
     return sharedInstance;
 }
 
-+ (void) setObject:(NSString *)url image:(UIImage *)image {
++ (void) setObject:(NSURL *)url image:(UIImage *)image {
     [self.sharedStore setObject: url forKey:image];
 }
 

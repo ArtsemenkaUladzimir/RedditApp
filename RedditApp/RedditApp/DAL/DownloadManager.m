@@ -21,9 +21,9 @@
 
 }
 
-+ (void) loadData:(NSString*)URL completionHandler:(void (^)(NSData *data, NSURLResponse *responce, NSError *error))completionHandler {
-    NSURLSession *session = [NSURLSession sharedSession];
-    [session dataTaskWithURL:[NSURL URLWithString:URL] completionHandler:completionHandler];
++ (void) loadDataWithUrl:(NSURL *)URL completionHandler:(void (^)(NSData *, NSURLResponse *, NSError *))completionHandler {
+    NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithURL:URL completionHandler:completionHandler];
+    [dataTask resume];
 }
 
 - (void)dealloc {

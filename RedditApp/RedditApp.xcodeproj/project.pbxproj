@@ -15,6 +15,8 @@
 		E70274DC1BBC58F4008A1372 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70274DA1BBC58F4008A1372 /* LaunchScreen.xib */; };
 		E70274E81BBC58F4008A1372 /* RedditAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E70274E71BBC58F4008A1372 /* RedditAppTests.m */; };
 		E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */; };
+		E79C59D31BD9742000776A5F /* StoreImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C59D21BD9742000776A5F /* StoreImage.m */; };
+		E79C59D81BD9774700776A5F /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C59D71BD9774700776A5F /* DownloadManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,10 @@
 		E70274E71BBC58F4008A1372 /* RedditAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedditAppTests.m; sourceTree = "<group>"; };
 		E76C7C891BBE876D006B7E34 /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexViewController.h; sourceTree = "<group>"; };
 		E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexViewController.m; sourceTree = "<group>"; };
+		E79C59D21BD9742000776A5F /* StoreImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreImage.m; path = DAL/StoreImage.m; sourceTree = "<group>"; };
+		E79C59D61BD9747500776A5F /* StoreImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreImage.h; path = DAL/StoreImage.h; sourceTree = "<group>"; };
+		E79C59D71BD9774700776A5F /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManager.m; path = DAL/DownloadManager.m; sourceTree = "<group>"; };
+		E79C59D91BD9776100776A5F /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManager.h; path = DAL/DownloadManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,7 @@
 				E70274DA1BBC58F4008A1372 /* LaunchScreen.xib */,
 				E70274CF1BBC58F4008A1372 /* RedditApp.xcdatamodeld */,
 				E70274C81BBC58F4008A1372 /* Supporting Files */,
+				E79C59D41BD9742700776A5F /* DAL */,
 			);
 			path = RedditApp;
 			sourceTree = "<group>";
@@ -129,6 +136,33 @@
 			);
 			name = Index;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		E79C59D41BD9742700776A5F /* DAL */ = {
+			isa = PBXGroup;
+			children = (
+				E79C59D51BD9743000776A5F /* StoreImage */,
+				E79C59DA1BD978F400776A5F /* DownloadManager */,
+			);
+			name = DAL;
+			sourceTree = "<group>";
+		};
+		E79C59D51BD9743000776A5F /* StoreImage */ = {
+			isa = PBXGroup;
+			children = (
+				E79C59D61BD9747500776A5F /* StoreImage.h */,
+				E79C59D21BD9742000776A5F /* StoreImage.m */,
+			);
+			name = StoreImage;
+			sourceTree = "<group>";
+		};
+		E79C59DA1BD978F400776A5F /* DownloadManager */ = {
+			isa = PBXGroup;
+			children = (
+				E79C59D71BD9774700776A5F /* DownloadManager.m */,
+				E79C59D91BD9776100776A5F /* DownloadManager.h */,
+			);
+			name = DownloadManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +269,8 @@
 				E70274D11BBC58F4008A1372 /* RedditApp.xcdatamodeld in Sources */,
 				E70274CB1BBC58F4008A1372 /* main.m in Sources */,
 				E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */,
+				E79C59D31BD9742000776A5F /* StoreImage.m in Sources */,
+				E79C59D81BD9774700776A5F /* DownloadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

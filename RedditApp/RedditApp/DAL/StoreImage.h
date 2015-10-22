@@ -15,7 +15,7 @@
 @interface StoreImage : NSObject
 
 + (id) sharedStore;
-+ (void) setObject: (NSString*)url image:(UIImage*)image;
++ (void) setObject: (NSURL*)url image:(UIImage*)image;
 + (UIImage*) getObjectForKey: (NSString*)url;
 
 @end

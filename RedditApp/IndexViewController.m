@@ -7,10 +7,11 @@
 //
 
 #import "IndexViewController.h"
+#import "DownloadManager.h"
+#import "StoreImage.h"
 
 @interface IndexViewController ()
 
-@property (nonatomic, retain) NSMutableData *jsonData;
 @property (nonatomic, retain) NSMutableArray *listItem;
 
 @end
@@ -19,45 +20,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.listItem = [NSMutableArray new];
-    [self complexDownload];
+    self.listItem = [[NSMutableArray alloc] init];
+    [self loadWithURL:@"https://www.reddit.com/hot.json"];
 }
 
-//////////////////////////////////// ToDo: Refactor //////////////////////////////////////
-- (IBAction)complexDownload {
+- (void)loadWithURL: (NSString*)URL {
+    NSURL *url = [NSURL URLWithString:URL];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    NSURL *url = [NSURL URLWithString:@"https://www.reddit.com/hot.json"];
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    NSURLConnection *theConnection = [NSURLConnection connectionWithRequest:theRequest delegate:self];
-    if (theConnection) {
-        self.jsonData = [NSMutableData data];
-    } else {
+    [DownloadManager loadDataWithUrl:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
+        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        [[[JSON valueForKey:@"data"]valueForKey:@"children"]
+         enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+             [self.listItem addObject:[obj valueForKey:@"data"]];
+         }];
+        [self.itemListTable reloadData];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-        NSLog(@"Connection failed");
-    }
+    }];
 }
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.jsonData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:self.jsonData options:NSJSONReadingMutableContainers error:nil];
-    [[[JSON valueForKey:@"data"]valueForKey:@"children"]
-     enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-         [self.listItem addObject:[obj valueForKey:@"data"]];
-     }];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    NSLog(@"%@", [[JSON valueForKey:@"data"]valueForKey:@"children"]);
-    [self.itemListTable reloadData];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"%@", error);
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-}
-//////////////////////////////////// ToDo: End //////////////////////////////////////
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -73,22 +52,22 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [UITableViewCell new];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     cell.textLabel.text = [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"title"];
     
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSData *data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"thumbnail"]]];
-        if (data == nil) {
-            return;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"thumbnail"]]];
+    [DownloadManager loadDataWithUrl:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
+        UIImage *image = [UIImage imageWithData:data];
+        if (image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                if (updateCell) {
+                    updateCell.imageView.image = image;
+                }
+            });
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.imageView.image = [UIImage imageWithData: data];
-//            [self.itemListTable beginUpdates];
-//            [self.itemListTable reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//            [self.itemListTable endUpdates];
-        });
-    });
+    }];
     
     return cell;
 }
