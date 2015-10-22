@@ -14,10 +14,9 @@
 
 @interface StoreImage : NSObject
 
-@property (nonatomic, retain) NSMutableDictionary *image;
-
 + (id) sharedStore;
-+ (void) push: (UIImage*)image;
++ (void) setObject: (NSString*)url image:(UIImage*)image;
++ (UIImage*) getObjectForKey: (NSString*)url;
 
 @end
 

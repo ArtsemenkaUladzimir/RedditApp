@@ -10,6 +10,8 @@
 
 @interface StoreImage ()
 
+@property (nonatomic, retain) NSMutableDictionary *sharedStore;
+
 @end
 
 @implementation StoreImage
@@ -19,12 +21,17 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[StoreImage alloc] init];
+        sharedInstance.sharedStore = [[NSMutableDictionary alloc] init];
     });
     return sharedInstance;
 }
 
-+ (void) push: (UIImage*)image {
-    
++ (void) setObject:(NSString *)url image:(UIImage *)image {
+    [self.sharedStore setObject: url forKey:image];
+}
+
++ (UIImage*) getObjectForKey:(NSString *)url {
+    return [self.sharedStore objectForKey:url];
 }
 
 @end
