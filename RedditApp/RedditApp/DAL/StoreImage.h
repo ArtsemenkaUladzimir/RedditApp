@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 Vladimir. All rights reserved.
 //
 
-#ifndef RedditApp_Header_h
-#define RedditApp_Header_h
+#ifndef RedditApp_StoreImage_h
+#define RedditApp_StoreImage_h
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @interface StoreImage : NSObject
 
-+ (id) sharedStore;
-+ (void) setObject: (NSURL*)url image:(UIImage*)image;
-+ (UIImage*) getObjectForKey: (NSString*)url;
++ (StoreImage*) sharedStore;
+- (void) setObject: (NSURL*)url image:(UIImage*)image;
+- (UIImage*) getObjectForKey: (NSURL*)url;
 
 @end
 

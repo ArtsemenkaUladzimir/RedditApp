@@ -7,8 +7,8 @@
 //
 
 #import "IndexViewController.h"
-#import "DownloadManager.h"
-#import "StoreImage.h"
+#import "/Users/vladimir/Applications/IOS/RedditApp/RedditApp/RedditApp/DAL/DownloadManager.h"
+#import "/Users/vladimir/Applications/IOS/RedditApp/RedditApp/RedditApp/DAL/StoreImage.h"
 
 @interface IndexViewController ()
 
@@ -27,7 +27,7 @@
 - (void)loadWithURL: (NSString*)URL {
     NSURL *url = [NSURL URLWithString:URL];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [DownloadManager loadDataWithUrl:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
+    [[DownloadManager sharedManager] loadDataWithUrl:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
         NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         [[[JSON valueForKey:@"data"]valueForKey:@"children"]
          enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -57,18 +57,29 @@
     cell.textLabel.text = [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"title"];
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"thumbnail"]]];
-    [DownloadManager loadDataWithUrl:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
-        UIImage *image = [UIImage imageWithData:data];
-        if (image) {
+    if ([url absoluteString].length != 0) {
+        if (![[StoreImage sharedStore]getObjectForKey:url]) {
+            [[DownloadManager sharedManager] loadDataWithUrl:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
+                UIImage *image = [UIImage imageWithData:data];
+                if (image) {
+                    [[StoreImage sharedStore] setObject:url image:image];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                        if (updateCell) {
+                            updateCell.imageView.image = image;
+                        }
+                    });
+                }
+            }];
+        } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
                 if (updateCell) {
-                    updateCell.imageView.image = image;
+                    updateCell.imageView.image = [[StoreImage sharedStore]getObjectForKey:url];
                 }
             });
         }
-    }];
-    
+    }
     return cell;
 }
 

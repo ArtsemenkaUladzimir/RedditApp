@@ -11,11 +11,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DownloadManager : NSObject {
-}
+@interface DownloadManager : NSObject
 
-+ (id) sharedManager;
-+ (void) loadDataWithUrl:(NSURL*)URL completionHandler:(void (^)(NSData *data, NSURLResponse *responce, NSError *error))completionHandler;
++ (DownloadManager*) sharedManager;
+- (void) loadDataWithUrl:(NSURL*)URL completionHandler:(void (^)(NSData *data, NSURLResponse *responce, NSError *error))completionHandler;
 
 @end
 

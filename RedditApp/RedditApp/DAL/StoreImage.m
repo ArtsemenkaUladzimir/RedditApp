@@ -8,6 +8,11 @@
 
 #import "StoreImage.h"
 
+static id ObjectOrNull(id object)
+{
+    return object ?: [NSNull null];
+}
+
 @interface StoreImage ()
 
 @property (nonatomic, retain) NSMutableDictionary *sharedStore;
@@ -16,21 +21,23 @@
 
 @implementation StoreImage
 
-+ (id) sharedStore {
++ (StoreImage*) sharedStore {
     static StoreImage *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[StoreImage alloc] init];
-        sharedInstance.sharedStore = [[NSMutableDictionary alloc] init];
+        sharedInstance.sharedStore = [[NSMutableDictionary alloc] initWithCapacity:20];
     });
     return sharedInstance;
 }
 
-+ (void) setObject:(NSURL *)url image:(UIImage *)image {
-    [self.sharedStore setObject: url forKey:image];
+- (void) setObject:(NSURL *)url image:(UIImage *)image {
+    if (url != nil && image != nil) {
+        [self.sharedStore setObject: ObjectOrNull(image) forKey:url];
+    }
 }
 
-+ (UIImage*) getObjectForKey:(NSString *)url {
+- (UIImage*) getObjectForKey:(NSURL *)url {
     return [self.sharedStore objectForKey:url];
 }
 

@@ -9,9 +9,7 @@
 
 @implementation DownloadManager
 
-#pragma mark Singleton Methods
-
-+ (id)sharedManager {
++ (DownloadManager*)sharedManager {
     static DownloadManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -21,7 +19,7 @@
 
 }
 
-+ (void) loadDataWithUrl:(NSURL *)URL completionHandler:(void (^)(NSData *, NSURLResponse *, NSError *))completionHandler {
+- (void) loadDataWithUrl:(NSURL *)URL completionHandler:(void (^)(NSData *, NSURLResponse *, NSError *))completionHandler {
     NSURLSessionDataTask *dataTask = [[NSURLSession sharedSession] dataTaskWithURL:URL completionHandler:completionHandler];
     [dataTask resume];
 }
