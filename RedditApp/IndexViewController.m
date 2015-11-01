@@ -7,8 +7,10 @@
 //
 
 #import "IndexViewController.h"
+#import "DetailsViewController.h"
 #import "DownloadManager.h"
 #import "StoreImage.h"
+#import "MainController.h"
 
 @interface IndexViewController ()
 
@@ -33,7 +35,7 @@
          enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
              [self.listItem addObject:[obj valueForKey:@"data"]];
          }];
-        [self.itemListTable reloadData];
+        [self.tableView reloadData];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
@@ -58,30 +60,16 @@
     cell.imageView.image = nil;
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"thumbnail"]]];
-    if ([url absoluteString].length != 0) {
-        if (![[StoreImage sharedStore]getObjectForKey:url]) {
-            [[DownloadManager sharedManager] loadDataWithUrlMainThread:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
-                UIImage *image = [UIImage imageWithData:data];
-                if (image) {
-                    [[StoreImage sharedStore] setObject:url image:image];
-                    UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
-                    if (updateCell) {
-                        updateCell.imageView.image = image;
-                        [updateCell setNeedsLayout];
-                    }
-                }
-            }];
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
-                if (updateCell) {
-                    updateCell.imageView.image = [[StoreImage sharedStore]getObjectForKey:url];
-                    [updateCell setNeedsLayout];
-                }
-            });
-        }
-    }
+    
+    [MainController loadImageWithUrl:url tableView:tableView cellForRowAtIndexPath:indexPath];
+    
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    DetailsViewController *detailsViewController = segue.destinationViewController;
+    detailsViewController.mainLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
 }
 
 - (void)didReceiveMemoryWarning {

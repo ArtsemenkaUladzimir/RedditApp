@@ -17,6 +17,8 @@
 		E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */; };
 		E79C59D31BD9742000776A5F /* StoreImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C59D21BD9742000776A5F /* StoreImage.m */; };
 		E79C59D81BD9774700776A5F /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C59D71BD9774700776A5F /* DownloadManager.m */; };
+		E79EEE141BE6401E00B5DAC5 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79EEE131BE6401E00B5DAC5 /* MainController.m */; };
+		E79EEE1C1BE6541C00B5DAC5 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79EEE1B1BE6541C00B5DAC5 /* DetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,10 @@
 		E79C59D61BD9747500776A5F /* StoreImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreImage.h; path = DAL/StoreImage.h; sourceTree = "<group>"; };
 		E79C59D71BD9774700776A5F /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManager.m; path = DAL/DownloadManager.m; sourceTree = "<group>"; };
 		E79C59D91BD9776100776A5F /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManager.h; path = DAL/DownloadManager.h; sourceTree = "<group>"; };
+		E79EEE121BE6400000B5DAC5 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainController.h; path = DAL/MainController.h; sourceTree = "<group>"; };
+		E79EEE131BE6401E00B5DAC5 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainController.m; path = DAL/MainController.m; sourceTree = "<group>"; };
+		E79EEE181BE6536900B5DAC5 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		E79EEE1B1BE6541C00B5DAC5 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +95,7 @@
 		E70274C71BBC58F4008A1372 /* RedditApp */ = {
 			isa = PBXGroup;
 			children = (
-				E76C7C8C1BBE8779006B7E34 /* Index */,
+				E79EEE171BE6533C00B5DAC5 /* IOSApp */,
 				E70274CC1BBC58F4008A1372 /* AppDelegate.h */,
 				E70274CD1BBC58F4008A1372 /* AppDelegate.m */,
 				E70274D51BBC58F4008A1372 /* Main.storyboard */,
@@ -143,6 +149,7 @@
 			children = (
 				E79C59D51BD9743000776A5F /* StoreImage */,
 				E79C59DA1BD978F400776A5F /* DownloadManager */,
+				E79EEE151BE6402400B5DAC5 /* MainController */,
 			);
 			name = DAL;
 			sourceTree = "<group>";
@@ -163,6 +170,33 @@
 				E79C59D91BD9776100776A5F /* DownloadManager.h */,
 			);
 			name = DownloadManager;
+			sourceTree = "<group>";
+		};
+		E79EEE151BE6402400B5DAC5 /* MainController */ = {
+			isa = PBXGroup;
+			children = (
+				E79EEE121BE6400000B5DAC5 /* MainController.h */,
+				E79EEE131BE6401E00B5DAC5 /* MainController.m */,
+			);
+			name = MainController;
+			sourceTree = "<group>";
+		};
+		E79EEE161BE6533000B5DAC5 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				E79EEE181BE6536900B5DAC5 /* DetailsViewController.h */,
+				E79EEE1B1BE6541C00B5DAC5 /* DetailsViewController.m */,
+			);
+			name = Details;
+			sourceTree = "<group>";
+		};
+		E79EEE171BE6533C00B5DAC5 /* IOSApp */ = {
+			isa = PBXGroup;
+			children = (
+				E79EEE161BE6533000B5DAC5 /* Details */,
+				E76C7C8C1BBE8779006B7E34 /* Index */,
+			);
+			name = IOSApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,7 +304,9 @@
 				E70274CB1BBC58F4008A1372 /* main.m in Sources */,
 				E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */,
 				E79C59D31BD9742000776A5F /* StoreImage.m in Sources */,
+				E79EEE141BE6401E00B5DAC5 /* MainController.m in Sources */,
 				E79C59D81BD9774700776A5F /* DownloadManager.m in Sources */,
+				E79EEE1C1BE6541C00B5DAC5 /* DetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

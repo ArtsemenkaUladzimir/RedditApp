@@ -14,7 +14,9 @@
 @interface DownloadManager : NSObject
 
 + (DownloadManager*) sharedManager;
-- (void) loadDataWithUrl:(NSURL*)URL completionHandler:(void (^)(NSData *data, NSURLResponse *responce, NSError *error))completionHandler;
+
+- (void) loadDataWithUrl:(NSURL *)URL completionHandler:(void (^)(NSData *data, NSURLResponse *responce, NSError *error))completionHandler;
+
 - (void) loadDataWithUrlMainThread:(NSURL *)URL completionHandler:(void (^)(NSData *, NSURLResponse *, NSError *))completionHandler;
 
 @end

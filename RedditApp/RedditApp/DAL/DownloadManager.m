@@ -28,6 +28,10 @@
     [[session dataTaskWithURL:URL completionHandler:completionHandler] resume];
 }
 
+- (void) loadImageWithUrl:(NSURL *)URL table:(id)table cellForRowAtIndexPath:(id)cell {
+    
+}
+
 - (void)dealloc {
 }
 

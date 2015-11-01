@@ -10,6 +10,6 @@
 
 @interface IndexViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *itemListTable;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
