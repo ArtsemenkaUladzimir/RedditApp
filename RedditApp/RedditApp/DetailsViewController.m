@@ -43,6 +43,9 @@
     }];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
 
 
 - (void)didReceiveMemoryWarning {

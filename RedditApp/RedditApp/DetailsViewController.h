@@ -11,11 +11,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailsViewController : UIViewController
+@interface DetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) NSString *permalink;
 
-@property (weak, nonatomic) IBOutlet UILabel *mainLabel;
+@property (weak, nonatomic) IBOutlet UITextField *mainLabel;
 
 @end
 

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Vladimir. All rights reserved.
 //
 #import "DownloadManager.h"
+#import "StoreImage.h"
 
 @implementation DownloadManager
 
@@ -28,8 +29,30 @@
     [[session dataTaskWithURL:URL completionHandler:completionHandler] resume];
 }
 
-- (void) loadImageWithUrl:(NSURL *)URL table:(id)table cellForRowAtIndexPath:(id)cell {
-    
+- (void) loadImageWithUrl:(NSURL *)URL tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([URL absoluteString].length != 0) {
+        if (![[StoreImage sharedStore]getObjectForKey:URL]) {
+            [[DownloadManager sharedManager] loadDataWithUrlMainThread:URL completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
+                UIImage *image = [UIImage imageWithData:data];
+                if (image) {
+                    [[StoreImage sharedStore] setObject:URL image:image];
+                    UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                    if (updateCell) {
+                        updateCell.imageView.image = image;
+                        [updateCell setNeedsLayout];
+                    }
+                }
+            }];
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                if (updateCell) {
+                    updateCell.imageView.image = [[StoreImage sharedStore]getObjectForKey:URL];
+                    [updateCell setNeedsLayout];
+                }
+            });
+        }
+    }
 }
 
 - (void)dealloc {

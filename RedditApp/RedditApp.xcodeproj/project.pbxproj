@@ -17,7 +17,6 @@
 		E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */; };
 		E79C59D31BD9742000776A5F /* StoreImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C59D21BD9742000776A5F /* StoreImage.m */; };
 		E79C59D81BD9774700776A5F /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C59D71BD9774700776A5F /* DownloadManager.m */; };
-		E79EEE141BE6401E00B5DAC5 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79EEE131BE6401E00B5DAC5 /* MainController.m */; };
 		E79EEE1C1BE6541C00B5DAC5 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79EEE1B1BE6541C00B5DAC5 /* DetailsViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -50,8 +49,6 @@
 		E79C59D61BD9747500776A5F /* StoreImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreImage.h; path = DAL/StoreImage.h; sourceTree = "<group>"; };
 		E79C59D71BD9774700776A5F /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManager.m; path = DAL/DownloadManager.m; sourceTree = "<group>"; };
 		E79C59D91BD9776100776A5F /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManager.h; path = DAL/DownloadManager.h; sourceTree = "<group>"; };
-		E79EEE121BE6400000B5DAC5 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainController.h; path = DAL/MainController.h; sourceTree = "<group>"; };
-		E79EEE131BE6401E00B5DAC5 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainController.m; path = DAL/MainController.m; sourceTree = "<group>"; };
 		E79EEE181BE6536900B5DAC5 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		E79EEE1B1BE6541C00B5DAC5 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,15 +169,6 @@
 			name = DownloadManager;
 			sourceTree = "<group>";
 		};
-		E79EEE151BE6402400B5DAC5 /* MainController */ = {
-			isa = PBXGroup;
-			children = (
-				E79EEE121BE6400000B5DAC5 /* MainController.h */,
-				E79EEE131BE6401E00B5DAC5 /* MainController.m */,
-			);
-			name = MainController;
-			sourceTree = "<group>";
-		};
 		E79EEE161BE6533000B5DAC5 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,7 +190,6 @@
 		E79EEE1D1BE6B81900B5DAC5 /* BLL */ = {
 			isa = PBXGroup;
 			children = (
-				E79EEE151BE6402400B5DAC5 /* MainController */,
 			);
 			name = BLL;
 			sourceTree = "<group>";
@@ -251,7 +238,7 @@
 		E70274BD1BBC58F4008A1372 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = Vladimir;
 				TargetAttributes = {
 					E70274C41BBC58F4008A1372 = {
@@ -312,7 +299,6 @@
 				E70274CB1BBC58F4008A1372 /* main.m in Sources */,
 				E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */,
 				E79C59D31BD9742000776A5F /* StoreImage.m in Sources */,
-				E79EEE141BE6401E00B5DAC5 /* MainController.m in Sources */,
 				E79C59D81BD9774700776A5F /* DownloadManager.m in Sources */,
 				E79EEE1C1BE6541C00B5DAC5 /* DetailsViewController.m in Sources */,
 			);
@@ -377,6 +363,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -442,6 +429,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RedditApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "by.exadel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -452,6 +440,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RedditApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "by.exadel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -470,6 +459,7 @@
 				);
 				INFOPLIST_FILE = RedditAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "by.exadel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RedditApp.app/RedditApp";
 			};
@@ -485,6 +475,7 @@
 				);
 				INFOPLIST_FILE = RedditAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "by.exadel.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RedditApp.app/RedditApp";
 			};

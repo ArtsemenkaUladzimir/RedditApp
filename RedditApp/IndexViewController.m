@@ -10,7 +10,6 @@
 #import "DetailsViewController.h"
 #import "DownloadManager.h"
 #import "StoreImage.h"
-#import "MainController.h"
 
 @interface IndexViewController ()
 
@@ -61,7 +60,7 @@
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"thumbnail"]]];
     
-    [MainController loadImageWithUrl:url tableView:tableView cellForRowAtIndexPath:indexPath];
+    [[DownloadManager sharedManager]loadImageWithUrl:url tableView:tableView cellForRowAtIndexPath:indexPath];
     
     return cell;
 }
