@@ -7,13 +7,14 @@
 //
 
 #import "IndexViewController.h"
+#import "IndexViewCell.h"
 #import "DetailsViewController.h"
 #import "DownloadManager.h"
 #import "StoreImage.h"
 
 @interface IndexViewController ()
 
-@property (nonatomic, retain) NSMutableArray *listItem;
+@property (nonatomic, retain) NSMutableArray *item;
 
 @end
 
@@ -21,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.listItem = [[NSMutableArray alloc] init];
+    self.item = [[NSMutableArray alloc] init];
     [self loadWithURL:@"https://www.reddit.com/hot.json"];
 }
 
@@ -32,7 +33,7 @@
         NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         [[[JSON valueForKey:@"data"]valueForKey:@"children"]
          enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-             [self.listItem addObject:[obj valueForKey:@"data"]];
+             [self.item addObject:[obj valueForKey:@"data"]];
          }];
         [self.tableView reloadData];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -44,23 +45,48 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.listItem count];
+    return [self.item count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (IndexViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"IndexViewCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    IndexViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[IndexViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    cell.textLabel.text = [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"title"];
-    cell.imageView.image = nil;
+    cell.textLabel.text = [[self.item objectAtIndex:indexPath.row]valueForKey:@"title"];
+    cell.detailTextLabel.text = [[self.item objectAtIndex:indexPath.row]valueForKey:@"subreddit"];
+    cell.posterImageView.image = nil;
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.listItem objectAtIndex:indexPath.row]valueForKey:@"thumbnail"]]];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.item objectAtIndex:indexPath.row]valueForKey:@"thumbnail"]]];
     
-    [[DownloadManager sharedManager]loadImageWithUrl:url tableView:tableView cellForRowAtIndexPath:indexPath];
+    //[[DownloadManager sharedManager]loadImageWithUrl:url tableView:tableView imageView:cell.posterImageView cellForRowAtIndexPath:indexPath];
+    
+    if ([URL absoluteString].length != 0) {
+        if (![[StoreImage sharedStore]getObjectForKey:URL]) {
+            [[DownloadManager sharedManager] loadDataWithUrlMainThread:URL completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
+                UIImage *image = [UIImage imageWithData:data];
+                if (image) {
+                    [[StoreImage sharedStore] setObject:URL image:image];
+                    IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
+                    if (updateCell) {
+                        updateCell.posterImageView.image = image;
+                        [updateCell setNeedsLayout];
+                    }
+                }
+            }];
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
+                if (updateCell) {
+                    updateCell.posterImageView.image = [[StoreImage sharedStore]getObjectForKey:URL];
+                    [updateCell setNeedsLayout];
+                }
+            });
+        }
+    }
     
     return cell;
 }
@@ -68,7 +94,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     DetailsViewController *detailsViewController = segue.destinationViewController;
-    detailsViewController.permalink = [[self.listItem objectAtIndex:indexPath.row] valueForKey:@"permalink"];
+    detailsViewController.permalink = [[self.item objectAtIndex:indexPath.row] valueForKey:@"permalink"];
 }
 
 - (void)didReceiveMemoryWarning {

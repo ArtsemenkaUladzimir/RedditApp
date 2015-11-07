@@ -14,6 +14,7 @@
 		E70274D91BBC58F4008A1372 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E70274D81BBC58F4008A1372 /* Images.xcassets */; };
 		E70274DC1BBC58F4008A1372 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70274DA1BBC58F4008A1372 /* LaunchScreen.xib */; };
 		E70274E81BBC58F4008A1372 /* RedditAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E70274E71BBC58F4008A1372 /* RedditAppTests.m */; };
+		E73EC6C41BEDF8B2001BE507 /* IndexViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E73EC6C31BEDF8B2001BE507 /* IndexViewCell.m */; };
 		E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */; };
 		E79C59D31BD9742000776A5F /* StoreImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C59D21BD9742000776A5F /* StoreImage.m */; };
 		E79C59D81BD9774700776A5F /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E79C59D71BD9774700776A5F /* DownloadManager.m */; };
@@ -43,6 +44,8 @@
 		E70274E11BBC58F4008A1372 /* RedditAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedditAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E70274E61BBC58F4008A1372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E70274E71BBC58F4008A1372 /* RedditAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedditAppTests.m; sourceTree = "<group>"; };
+		E73EC6C21BEDF8B2001BE507 /* IndexViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexViewCell.h; sourceTree = "<group>"; };
+		E73EC6C31BEDF8B2001BE507 /* IndexViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexViewCell.m; sourceTree = "<group>"; };
 		E76C7C891BBE876D006B7E34 /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexViewController.h; sourceTree = "<group>"; };
 		E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexViewController.m; sourceTree = "<group>"; };
 		E79C59D21BD9742000776A5F /* StoreImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreImage.m; path = DAL/StoreImage.m; sourceTree = "<group>"; };
@@ -132,6 +135,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E73EC6C51BEDF8E0001BE507 /* IndexViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E73EC6C21BEDF8B2001BE507 /* IndexViewCell.h */,
+				E73EC6C31BEDF8B2001BE507 /* IndexViewCell.m */,
+			);
+			name = IndexViewCell;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		E76C7C8C1BBE8779006B7E34 /* Index */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +158,7 @@
 		E79C59D41BD9742700776A5F /* DAL */ = {
 			isa = PBXGroup;
 			children = (
+				E73EC6C51BEDF8E0001BE507 /* IndexViewCell */,
 				E79C59D51BD9743000776A5F /* StoreImage */,
 				E79C59DA1BD978F400776A5F /* DownloadManager */,
 			);
@@ -299,6 +313,7 @@
 				E70274CB1BBC58F4008A1372 /* main.m in Sources */,
 				E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */,
 				E79C59D31BD9742000776A5F /* StoreImage.m in Sources */,
+				E73EC6C41BEDF8B2001BE507 /* IndexViewCell.m in Sources */,
 				E79C59D81BD9774700776A5F /* DownloadManager.m in Sources */,
 				E79EEE1C1BE6541C00B5DAC5 /* DetailsViewController.m in Sources */,
 			);
@@ -379,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -416,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
