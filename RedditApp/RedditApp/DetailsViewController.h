@@ -11,7 +11,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DetailsViewController : UIViewController
 
 @property (weak, nonatomic) NSString *permalink;
 

@@ -140,36 +140,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0lX-cV-tTe">
-                                <rect key="frame" x="30" y="70" width="390" height="219"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LPl-XZ-prb">
+                                <rect key="frame" x="30" y="60" width="540" height="48"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="0lX-cV-tTe" secondAttribute="height" multiplier="65:11" id="10U-wZ-Q8k"/>
-                                    <constraint firstAttribute="width" secondItem="0lX-cV-tTe" secondAttribute="height" multiplier="16:9" id="Efx-dj-kWk"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="160" id="q1v-Tu-Hgt"/>
+                                    <constraint firstAttribute="width" secondItem="LPl-XZ-prb" secondAttribute="height" multiplier="45:4" id="QZp-BI-nIj"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="10U-wZ-Q8k"/>
-                                    </mask>
-                                </variation>
                             </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hS1-5C-Jp0">
+                                <rect key="frame" x="30" y="118" width="540" height="100"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="lEN-GS-7qN"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="B7U-ug-rix">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Score" id="Nos-mC-qEV">
+                                        <rect key="frame" x="0.0" y="0.0" width="118" height="95"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="118" height="95"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <size key="customSize" width="118" height="95"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Over18" id="LlR-EL-iTx">
+                                        <rect key="frame" x="141" y="0.0" width="118" height="95"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="118" height="95"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <size key="customSize" width="118" height="95"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Score" id="WaM-SE-lWQ">
+                                        <rect key="frame" x="281" y="0.0" width="118" height="95"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="118" height="95"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <size key="customSize" width="118" height="95"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="0lX-cV-tTe" firstAttribute="top" secondItem="skS-M8-pt4" secondAttribute="topMargin" constant="70" id="5JW-85-9ab"/>
-                            <constraint firstItem="0lX-cV-tTe" firstAttribute="top" secondItem="skS-M8-pt4" secondAttribute="topMargin" constant="30" id="HnO-ji-nqm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0lX-cV-tTe" secondAttribute="trailing" constant="160" id="KzO-nZ-8Qf"/>
-                            <constraint firstItem="0lX-cV-tTe" firstAttribute="leading" secondItem="skS-M8-pt4" secondAttribute="leadingMargin" constant="10" id="WJr-Gz-aJ8"/>
-                            <constraint firstItem="0lX-cV-tTe" firstAttribute="top" secondItem="skS-M8-pt4" secondAttribute="topMargin" constant="60" id="cO7-jb-1ym"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hS1-5C-Jp0" secondAttribute="trailing" constant="10" id="4NX-6v-wtu"/>
+                            <constraint firstItem="hS1-5C-Jp0" firstAttribute="top" secondItem="LPl-XZ-prb" secondAttribute="bottom" constant="10" id="bnO-ME-bMt"/>
+                            <constraint firstItem="LPl-XZ-prb" firstAttribute="leading" secondItem="skS-M8-pt4" secondAttribute="leadingMargin" constant="10" id="dkb-q8-o6C"/>
+                            <constraint firstItem="LPl-XZ-prb" firstAttribute="top" secondItem="skS-M8-pt4" secondAttribute="topMargin" constant="60" id="fRF-G9-0sk"/>
+                            <constraint firstItem="hS1-5C-Jp0" firstAttribute="leading" secondItem="skS-M8-pt4" secondAttribute="leadingMargin" constant="10" id="fjf-cc-Ghy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LPl-XZ-prb" secondAttribute="trailing" constant="10" id="z9S-ca-J4j"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="HnO-ji-nqm"/>
-                                <exclude reference="cO7-jb-1ym"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="h4V-us-0Df">
                         <nil key="title"/>

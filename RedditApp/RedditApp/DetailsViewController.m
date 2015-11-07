@@ -11,6 +11,9 @@
 
 @interface DetailsViewController ()
 
+@property (nonatomic, retain) NSObject *item;
+@property (nonatomic, retain) NSMutableArray *comments;
+
 @end
 
 @implementation DetailsViewController
@@ -21,7 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    mainLabel.text = permalink;
     [self loadWithURL:[NSString stringWithFormat:@"https://www.reddit.com%@.json", permalink]];
 }
 
@@ -33,6 +35,7 @@
 
         if ([JSONObj isKindOfClass:[NSArray class]]) {
             NSArray *JSON = JSONObj;
+            self.item = [[[[[JSON firstObject] valueForKey:@"data"]valueForKey:@"children"] firstObject]valueForKey:@"data"];
             [[[[JSON firstObject] valueForKey:@"data"]valueForKey:@"children"]
              enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                  self.mainLabel.text = [[obj valueForKey:@"data"] valueForKey:@"title"];

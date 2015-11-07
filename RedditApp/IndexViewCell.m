@@ -10,6 +10,8 @@
 
 @implementation IndexViewCell
 
+@synthesize posterImageView;
+
 - (void)awakeFromNib {
     // Initialization code
 }
