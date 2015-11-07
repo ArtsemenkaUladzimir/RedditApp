@@ -69,7 +69,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     DetailsViewController *detailsViewController = segue.destinationViewController;
-    detailsViewController.mainLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
+    detailsViewController.permalink = [[self.listItem objectAtIndex:indexPath.row] valueForKey:@"permalink"];
 }
 
 - (void)didReceiveMemoryWarning {

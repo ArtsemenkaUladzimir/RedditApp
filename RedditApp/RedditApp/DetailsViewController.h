@@ -13,6 +13,8 @@
 
 @interface DetailsViewController : UIViewController
 
+@property (weak, nonatomic) NSString *permalink;
+
 @property (weak, nonatomic) IBOutlet UILabel *mainLabel;
 
 @end

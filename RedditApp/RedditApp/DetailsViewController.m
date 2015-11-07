@@ -7,6 +7,7 @@
 //
 
 #import "DetailsViewController.h"
+#import "DownloadManager.h"
 
 @interface DetailsViewController ()
 
@@ -14,10 +15,34 @@
 
 @implementation DetailsViewController
 
+@synthesize mainLabel;
+@synthesize permalink;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    mainLabel.text = permalink;
+    [self loadWithURL:[NSString stringWithFormat:@"https://www.reddit.com%@.json", permalink]];
 }
+
+- (void)loadWithURL: (NSString*)URL {
+    NSURL *url = [NSURL URLWithString:URL];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [[DownloadManager sharedManager] loadDataWithUrlMainThread:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
+        id JSONObj = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+
+        if ([JSONObj isKindOfClass:[NSArray class]]) {
+            NSArray *JSON = JSONObj;
+            [[[[JSON firstObject] valueForKey:@"data"]valueForKey:@"children"]
+             enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                 self.mainLabel.text = [[obj valueForKey:@"data"] valueForKey:@"title"];
+             }];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }
+        
+    }];
+}
+
 
 
 - (void)didReceiveMemoryWarning {

@@ -103,6 +103,7 @@
 				E70274DA1BBC58F4008A1372 /* LaunchScreen.xib */,
 				E70274CF1BBC58F4008A1372 /* RedditApp.xcdatamodeld */,
 				E70274C81BBC58F4008A1372 /* Supporting Files */,
+				E79EEE1D1BE6B81900B5DAC5 /* BLL */,
 				E79C59D41BD9742700776A5F /* DAL */,
 			);
 			path = RedditApp;
@@ -149,7 +150,6 @@
 			children = (
 				E79C59D51BD9743000776A5F /* StoreImage */,
 				E79C59DA1BD978F400776A5F /* DownloadManager */,
-				E79EEE151BE6402400B5DAC5 /* MainController */,
 			);
 			name = DAL;
 			sourceTree = "<group>";
@@ -197,6 +197,14 @@
 				E76C7C8C1BBE8779006B7E34 /* Index */,
 			);
 			name = IOSApp;
+			sourceTree = "<group>";
+		};
+		E79EEE1D1BE6B81900B5DAC5 /* BLL */ = {
+			isa = PBXGroup;
+			children = (
+				E79EEE151BE6402400B5DAC5 /* MainController */,
+			);
+			name = BLL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
