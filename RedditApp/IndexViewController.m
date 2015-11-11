@@ -73,6 +73,8 @@
                     IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
                     if (updateCell) {
                         updateCell.posterImageView.image = image;
+//                        CGSize imgSize = [updateCell.posterImageView intrinsicContentSize];
+//                        CGFloat imgWidth = imgSize.width;
                         [updateCell setNeedsLayout];
                     }
                 }
