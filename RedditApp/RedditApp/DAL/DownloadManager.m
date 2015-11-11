@@ -24,34 +24,24 @@
     [dataTask resume];
 }
 
-- (void) loadDataWithUrlMainThread:(NSURL *)URL completionHandler:(void (^)(NSData *, NSURLResponse *, NSError *))completionHandler {
+- (void) loadDataWithUrlMainThread:(NSURL *)url completionHandler:(void (^)(NSData *, NSURLResponse *, NSError *))completionHandler {
     NSURLSession* session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
-    [[session dataTaskWithURL:URL completionHandler:completionHandler] resume];
+    [[session dataTaskWithURL:url completionHandler:completionHandler] resume];
 }
 
-- (void) loadImageWithUrl:(NSURL *)URL tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([URL absoluteString].length != 0) {
-        if (![[StoreImage sharedStore]getObjectForKey:URL]) {
-            [[DownloadManager sharedManager] loadDataWithUrlMainThread:URL completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
-                UIImage *image = [UIImage imageWithData:data];
-                if (image) {
-                    [[StoreImage sharedStore] setObject:URL image:image];
-                    UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
-                    if (updateCell) {
-                        updateCell.imageView.image = image;
-                        [updateCell setNeedsLayout];
-                    }
-                }
-            }];
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
-                if (updateCell) {
-                    updateCell.imageView.image = [[StoreImage sharedStore]getObjectForKey:URL];
-                    [updateCell setNeedsLayout];
-                }
-            });
-        }
+- (void) loadImageWithUrl:(NSURL *)url to:(UIImage*)image {
+    if ([[StoreImage sharedStore]getObjectForKey:url]) {
+        image = [[StoreImage sharedStore]getObjectForKey:url];
+    } else {
+        [[DownloadManager sharedManager] loadDataWithUrlMainThread:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
+            if (data) {
+                UIImage *loadedImage = [UIImage imageWithData:data];
+                [[StoreImage sharedStore] setObject:url image:loadedImage];
+                image = [[StoreImage sharedStore]getObjectForKey:url];
+            } else {
+                image = [[StoreImage sharedStore]getDefault];
+            }
+        }];
     }
 }
 

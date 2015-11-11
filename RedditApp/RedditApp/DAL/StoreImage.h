@@ -15,8 +15,14 @@
 @interface StoreImage : NSObject
 
 + (StoreImage*) sharedStore;
+
+- (void) setDefaultSettings;
+
 - (void) setObject: (NSURL*)url image:(UIImage*)image;
+
 - (UIImage*) getObjectForKey: (NSURL*)url;
+
+- (UIImage*) getDefault;
 
 @end
 

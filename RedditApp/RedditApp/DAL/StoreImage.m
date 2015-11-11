@@ -28,7 +28,12 @@ static id ObjectOrNull(id object)
         sharedInstance = [[StoreImage alloc] init];
         sharedInstance.sharedStore = [[NSMutableDictionary alloc] initWithCapacity:20];
     });
+    [sharedInstance setDefaultSettings];
     return sharedInstance;
+}
+
+- (void) setDefaultSettings {
+    [self setObject:[NSURL URLWithString:@"default"] image:[UIImage imageNamed:@"ResourceBundle.bundle/party.jpg"]];
 }
 
 - (void) setObject:(NSURL *)url image:(UIImage *)image {
@@ -39,6 +44,10 @@ static id ObjectOrNull(id object)
 
 - (UIImage*) getObjectForKey:(NSURL *)url {
     return [self.sharedStore objectForKey:url];
+}
+
+- (UIImage*) getDefault {
+    return [self.sharedStore objectForKey:[NSURL URLWithString:@"default"]];
 }
 
 @end

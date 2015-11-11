@@ -68,15 +68,18 @@
         if (![[StoreImage sharedStore]getObjectForKey:URL]) {
             [[DownloadManager sharedManager] loadDataWithUrlMainThread:URL completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
                 UIImage *image = [UIImage imageWithData:data];
+                IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
                 if (image) {
                     [[StoreImage sharedStore] setObject:URL image:image];
-                    IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
                     if (updateCell) {
                         updateCell.posterImageView.image = image;
 //                        CGSize imgSize = [updateCell.posterImageView intrinsicContentSize];
 //                        CGFloat imgWidth = imgSize.width;
                         [updateCell setNeedsLayout];
                     }
+                } else {
+                    updateCell.posterImageView.image = [[StoreImage sharedStore] getDefault];
+                    [updateCell setNeedsLayout];
                 }
             }];
         } else {
@@ -88,6 +91,10 @@
                 }
             });
         }
+    } else {
+        IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
+        updateCell.posterImageView.image = [[StoreImage sharedStore] getDefault];
+        [updateCell setNeedsLayout];
     }
     
     return cell;

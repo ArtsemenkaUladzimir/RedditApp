@@ -11,8 +11,9 @@
 
 @interface DetailsViewController ()
 
-@property (nonatomic, retain) NSObject *item;
+@property (nonatomic, retain) NSDictionary *item;
 @property (nonatomic, retain) NSMutableArray *comments;
+@property (weak, nonatomic) IBOutlet UIImageView *mainImage;
 
 @end
 
@@ -38,12 +39,17 @@
             self.item = [[[[[JSON firstObject] valueForKey:@"data"]valueForKey:@"children"] firstObject]valueForKey:@"data"];
             [[[[JSON firstObject] valueForKey:@"data"]valueForKey:@"children"]
              enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                 self.mainLabel.text = [[obj valueForKey:@"data"] valueForKey:@"title"];
+                 self.item = [obj valueForKey:@"data"];
+                 [self initDetails];
              }];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
         
     }];
+}
+
+- (void) initDetails {
+    self.mainLabel.text = [self.item valueForKey:@"title"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

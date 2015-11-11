@@ -18,9 +18,9 @@
 
 - (void) loadDataWithUrl:(NSURL *)URL completionHandler:(void (^)(NSData *data, NSURLResponse *responce, NSError *error))completionHandler;
 
-- (void) loadDataWithUrlMainThread:(NSURL *)URL completionHandler:(void (^)(NSData *, NSURLResponse *, NSError *))completionHandler;
+- (void) loadDataWithUrlMainThread:(NSURL *)url completionHandler:(void (^)(NSData *, NSURLResponse *, NSError *))completionHandler;
 
-- (void) loadImageWithUrl:(NSURL *)URL tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void) loadImageWithUrl:(NSURL *)url to:(UIImage*)image;
 
 @end
 
