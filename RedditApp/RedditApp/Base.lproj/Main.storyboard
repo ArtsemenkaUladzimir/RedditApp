@@ -149,10 +149,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LPl-XZ-prb">
-                                <rect key="frame" x="30" y="60" width="540" height="48"/>
+                                <rect key="frame" x="30" y="60" width="540" height="360"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="LPl-XZ-prb" secondAttribute="height" multiplier="45:4" id="QZp-BI-nIj"/>
+                                    <constraint firstAttribute="width" secondItem="LPl-XZ-prb" secondAttribute="height" multiplier="3:2" id="QZp-BI-nIj"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -175,8 +175,8 @@
                         </textField>
                     </navigationItem>
                     <connections>
-                        <outlet property="mainImage" destination="LPl-XZ-prb" id="S7c-oF-Syt"/>
                         <outlet property="mainLabel" destination="2ho-sn-Zhg" id="KeA-8Y-03u"/>
+                        <outlet property="mainThumbnail" destination="LPl-XZ-prb" id="7em-zl-4tr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEX-nJ-ZqU" userLabel="First Responder" sceneMemberID="firstResponder"/>

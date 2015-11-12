@@ -17,6 +17,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *mainLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *mainThumbnail;
+
 @end
 
 #endif

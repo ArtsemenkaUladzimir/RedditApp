@@ -8,12 +8,12 @@
 
 #import "DetailsViewController.h"
 #import "DownloadManager.h"
+#import "StoreImage.h"
 
 @interface DetailsViewController ()
 
 @property (nonatomic, retain) NSDictionary *item;
 @property (nonatomic, retain) NSMutableArray *comments;
-@property (weak, nonatomic) IBOutlet UIImageView *mainImage;
 
 @end
 
@@ -21,6 +21,7 @@
 
 @synthesize mainLabel;
 @synthesize permalink;
+@synthesize mainThumbnail;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,6 +51,26 @@
 
 - (void) initDetails {
     self.mainLabel.text = [self.item valueForKey:@"title"];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [self.item valueForKey:@"thumbnail"]]];
+    
+    if ([url absoluteString].length != 0) {
+        if ([[StoreImage sharedStore]getObjectForKey:url]) {
+            self.mainThumbnail.image = [[StoreImage sharedStore]getObjectForKey:url];
+        } else {
+            [[DownloadManager sharedManager] loadDataWithUrlMainThread:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
+                if (data) {
+                    UIImage *loadedImage = [UIImage imageWithData:data];
+                    [[StoreImage sharedStore] setObject:url image:loadedImage];
+                    self.mainThumbnail.image = [[StoreImage sharedStore]getObjectForKey:url];
+                } else {
+                    self.mainThumbnail.image = [[StoreImage sharedStore]getDefault];
+                }
+            }];
+        }
+    } else {
+        self.mainThumbnail.image = [[StoreImage sharedStore] getDefault];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
