@@ -60,41 +60,25 @@
     cell.detailTextLabel.text = [[self.item objectAtIndex:indexPath.row]valueForKey:@"subreddit"];
     cell.posterImageView.image = nil;
     
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.item objectAtIndex:indexPath.row]valueForKey:@"thumbnail"]]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [[self.item objectAtIndex:indexPath.row]valueForKey:@"thumbnail"]]];
     
-    //[[DownloadManager sharedManager]loadImageWithUrl:url tableView:tableView imageView:cell.posterImageView cellForRowAtIndexPath:indexPath];
-    
-    if ([URL absoluteString].length != 0) {
-        if (![[StoreImage sharedStore]getObjectForKey:URL]) {
-            [[DownloadManager sharedManager] loadDataWithUrlMainThread:URL completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
-                UIImage *image = [UIImage imageWithData:data];
+    if ([url absoluteString].length != 0) {
+        if ([[StoreImage sharedStore]getObjectForKey:url]) {
+            cell.posterImageView.image = [[StoreImage sharedStore]getObjectForKey:url];
+        } else {
+            [[DownloadManager sharedManager] loadDataWithUrlMainThread:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
                 IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
-                if (image) {
-                    [[StoreImage sharedStore] setObject:URL image:image];
-                    if (updateCell) {
-                        updateCell.posterImageView.image = image;
-//                        CGSize imgSize = [updateCell.posterImageView intrinsicContentSize];
-//                        CGFloat imgWidth = imgSize.width;
-                        [updateCell setNeedsLayout];
-                    }
+                if (data) {
+                    UIImage *loadedImage = [UIImage imageWithData:data];
+                    [[StoreImage sharedStore] setObject:url image:loadedImage];
+                    updateCell.posterImageView.image = [[StoreImage sharedStore]getObjectForKey:url];
                 } else {
-                    updateCell.posterImageView.image = [[StoreImage sharedStore] getDefault];
-                    [updateCell setNeedsLayout];
+                    updateCell.posterImageView.image = [[StoreImage sharedStore]getDefault];
                 }
             }];
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
-                if (updateCell) {
-                    updateCell.posterImageView.image = [[StoreImage sharedStore]getObjectForKey:URL];
-                    [updateCell setNeedsLayout];
-                }
-            });
         }
     } else {
-        IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
-        updateCell.posterImageView.image = [[StoreImage sharedStore] getDefault];
-        [updateCell setNeedsLayout];
+        cell.posterImageView.image = [[StoreImage sharedStore] getDefault];
     }
     
     return cell;

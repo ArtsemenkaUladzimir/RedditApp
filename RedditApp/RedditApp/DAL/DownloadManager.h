@@ -20,7 +20,7 @@
 
 - (void) loadDataWithUrlMainThread:(NSURL *)url completionHandler:(void (^)(NSData *, NSURLResponse *, NSError *))completionHandler;
 
-- (void) loadImageWithUrl:(NSURL *)url to:(UIImage*)image;
+- (void) loadImageWithUrl:(NSURL *)url to:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

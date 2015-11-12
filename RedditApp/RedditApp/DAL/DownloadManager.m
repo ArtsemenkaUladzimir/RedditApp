@@ -7,6 +7,7 @@
 //
 #import "DownloadManager.h"
 #import "StoreImage.h"
+#import "IndexViewCell.h"
 
 @implementation DownloadManager
 
@@ -29,17 +30,19 @@
     [[session dataTaskWithURL:url completionHandler:completionHandler] resume];
 }
 
-- (void) loadImageWithUrl:(NSURL *)url to:(UIImage*)image {
+- (void) loadImageWithUrl:(NSURL *)url to:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
     if ([[StoreImage sharedStore]getObjectForKey:url]) {
-        image = [[StoreImage sharedStore]getObjectForKey:url];
+        updateCell.posterImageView.image = [[StoreImage sharedStore]getObjectForKey:url];
     } else {
         [[DownloadManager sharedManager] loadDataWithUrlMainThread:url completionHandler:^(NSData *data, NSURLResponse *responce, NSError *error) {
+            IndexViewCell *updateCell = [tableView cellForRowAtIndexPath:indexPath];
             if (data) {
                 UIImage *loadedImage = [UIImage imageWithData:data];
                 [[StoreImage sharedStore] setObject:url image:loadedImage];
-                image = [[StoreImage sharedStore]getObjectForKey:url];
+                updateCell.posterImageView.image = [[StoreImage sharedStore]getObjectForKey:url];
             } else {
-                image = [[StoreImage sharedStore]getDefault];
+                updateCell.posterImageView.image = [[StoreImage sharedStore]getDefault];
             }
         }];
     }
