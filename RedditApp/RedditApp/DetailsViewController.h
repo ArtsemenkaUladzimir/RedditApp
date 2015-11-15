@@ -19,6 +19,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *mainThumbnail;
 
+@property (weak, nonatomic) IBOutlet UICollectionView *detailsCollectionView;
+
 @end
 
 #endif

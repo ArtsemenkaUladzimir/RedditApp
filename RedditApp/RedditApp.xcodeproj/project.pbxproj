@@ -14,6 +14,7 @@
 		E70274D91BBC58F4008A1372 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E70274D81BBC58F4008A1372 /* Images.xcassets */; };
 		E70274DC1BBC58F4008A1372 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70274DA1BBC58F4008A1372 /* LaunchScreen.xib */; };
 		E70274E81BBC58F4008A1372 /* RedditAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E70274E71BBC58F4008A1372 /* RedditAppTests.m */; };
+		E71F157A1BF739B600D82DA2 /* DetailsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E71F15791BF739B600D82DA2 /* DetailsCollectionViewCell.m */; };
 		E723C0601BF3A075003AAB49 /* ResourceBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E723C05F1BF3A075003AAB49 /* ResourceBundle.bundle */; };
 		E73EC6C41BEDF8B2001BE507 /* IndexViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E73EC6C31BEDF8B2001BE507 /* IndexViewCell.m */; };
 		E76C7C8B1BBE876D006B7E34 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E76C7C8A1BBE876D006B7E34 /* IndexViewController.m */; };
@@ -45,6 +46,8 @@
 		E70274E11BBC58F4008A1372 /* RedditAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedditAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E70274E61BBC58F4008A1372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E70274E71BBC58F4008A1372 /* RedditAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedditAppTests.m; sourceTree = "<group>"; };
+		E71F15781BF739B600D82DA2 /* DetailsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailsCollectionViewCell.h; path = DAL/DetailsCollectionViewCell.h; sourceTree = "<group>"; };
+		E71F15791BF739B600D82DA2 /* DetailsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailsCollectionViewCell.m; path = DAL/DetailsCollectionViewCell.m; sourceTree = "<group>"; };
 		E723C05F1BF3A075003AAB49 /* ResourceBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ResourceBundle.bundle; sourceTree = "<group>"; };
 		E73EC6C21BEDF8B2001BE507 /* IndexViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexViewCell.h; sourceTree = "<group>"; };
 		E73EC6C31BEDF8B2001BE507 /* IndexViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexViewCell.m; sourceTree = "<group>"; };
@@ -138,6 +141,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E71F157B1BF739C300D82DA2 /* DetailsCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E71F15781BF739B600D82DA2 /* DetailsCollectionViewCell.h */,
+				E71F15791BF739B600D82DA2 /* DetailsCollectionViewCell.m */,
+			);
+			name = DetailsCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		E73EC6C51BEDF8E0001BE507 /* IndexViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +176,7 @@
 				E73EC6C51BEDF8E0001BE507 /* IndexViewCell */,
 				E79C59D51BD9743000776A5F /* StoreImage */,
 				E79C59DA1BD978F400776A5F /* DownloadManager */,
+				E71F157B1BF739C300D82DA2 /* DetailsCollectionViewCell */,
 			);
 			name = DAL;
 			sourceTree = "<group>";
@@ -320,6 +333,7 @@
 				E73EC6C41BEDF8B2001BE507 /* IndexViewCell.m in Sources */,
 				E79C59D81BD9774700776A5F /* DownloadManager.m in Sources */,
 				E79EEE1C1BE6541C00B5DAC5 /* DetailsViewController.m in Sources */,
+				E71F157A1BF739B600D82DA2 /* DetailsCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

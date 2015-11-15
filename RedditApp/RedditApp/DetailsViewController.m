@@ -9,11 +9,12 @@
 #import "DetailsViewController.h"
 #import "DownloadManager.h"
 #import "StoreImage.h"
+#import "DetailsCollectionViewCell.h"
 
 @interface DetailsViewController ()
 
 @property (nonatomic, retain) NSDictionary *item;
-@property (nonatomic, retain) NSMutableArray *comments;
+@property (nonatomic, retain) NSMutableArray *details;
 
 @end
 
@@ -22,11 +23,14 @@
 @synthesize mainLabel;
 @synthesize permalink;
 @synthesize mainThumbnail;
+@synthesize detailsCollectionView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self loadWithURL:[NSString stringWithFormat:@"https://www.reddit.com%@.json", permalink]];
+    
+    [self.detailsCollectionView reloadData];
 }
 
 - (void)loadWithURL: (NSString*)URL {
@@ -52,6 +56,22 @@
 - (void) initDetails {
     self.mainLabel.text = [self.item valueForKey:@"title"];
     
+    self.details = [NSMutableArray new];
+    [self.details addObject:[[self.item valueForKey:@"score"]stringValue]];
+    [self.details addObject:[self.item valueForKey:@"author"]];
+    [self.details addObject:[self.item valueForKey:@"subreddit"]];
+    [self.details addObject:[[self.item valueForKey:@"num_comments"]stringValue]];
+    [self.details addObject:[self.item valueForKey:@"domain"]];
+    [self.details addObject:[self.item valueForKey:@"over_18"]];
+    
+    @try {
+        [self.detailsCollectionView reloadData];
+    }
+    @catch (NSException *exception) {}
+    
+//    [self.detailsCollectionView reloadItemsAtIndexPaths:[self.detailsCollectionView indexPathsForVisibleItems]];
+//    [self.detailsCollectionView reloadData];
+    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [self.item valueForKey:@"thumbnail"]]];
     
     if ([url absoluteString].length != 0) {
@@ -73,8 +93,22 @@
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 6;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *identifier = @"Cell";
+    
+    DetailsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    cell.title.text = @"hello";
+    cell.label.text = [self.details objectAtIndex:indexPath.row];
+    
+//    UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:100];
+//    recipeImageView.image = [UIImage imageNamed:[recipeImages objectAtIndex:indexPath.row]];
+    
+    return cell;
 }
 
 

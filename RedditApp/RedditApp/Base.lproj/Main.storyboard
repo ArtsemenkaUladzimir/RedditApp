@@ -155,12 +155,74 @@
                                     <constraint firstAttribute="width" secondItem="LPl-XZ-prb" secondAttribute="height" multiplier="3:2" id="QZp-BI-nIj"/>
                                 </constraints>
                             </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vf7-IQ-ulg">
+                                <rect key="frame" x="30" y="428" width="540" height="200"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Qy4-xZ-rsv"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="02a-UA-Dob">
+                                    <size key="itemSize" width="67" height="67"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="yoH-ZM-Y0W" customClass="DetailsCollectionViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGJ-Dw-vks">
+                                                    <rect key="frame" x="8" y="41" width="64" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbl-la-qbb">
+                                                    <rect key="frame" x="8" y="14" width="64" height="21"/>
+                                                    <animations/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Title">
+                                                            <attributes>
+                                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <size key="customSize" width="80" height="80"/>
+                                        <connections>
+                                            <outlet property="label" destination="iGJ-Dw-vks" id="dXD-Fi-2DN"/>
+                                            <outlet property="title" destination="Cbl-la-qbb" id="q8P-qp-gGU"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="MCP-7b-gee" id="VFa-zc-1DU"/>
+                                    <outlet property="delegate" destination="MCP-7b-gee" id="gf6-Jt-JXl"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="vf7-IQ-ulg" firstAttribute="leading" secondItem="skS-M8-pt4" secondAttribute="leadingMargin" constant="10" id="JDe-cg-4tf"/>
+                            <constraint firstItem="vf7-IQ-ulg" firstAttribute="top" secondItem="LPl-XZ-prb" secondAttribute="bottom" constant="8" id="KJd-bn-26F"/>
                             <constraint firstItem="LPl-XZ-prb" firstAttribute="leading" secondItem="skS-M8-pt4" secondAttribute="leadingMargin" constant="10" id="dkb-q8-o6C"/>
                             <constraint firstItem="LPl-XZ-prb" firstAttribute="top" secondItem="skS-M8-pt4" secondAttribute="topMargin" constant="60" id="fRF-G9-0sk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vf7-IQ-ulg" secondAttribute="trailing" constant="10" id="mm8-7s-vVR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LPl-XZ-prb" secondAttribute="trailing" constant="10" id="z9S-ca-J4j"/>
                         </constraints>
                     </view>
@@ -175,8 +237,9 @@
                         </textField>
                     </navigationItem>
                     <connections>
+                        <outlet property="detailsCollectionView" destination="vf7-IQ-ulg" id="FDp-3e-KU0"/>
                         <outlet property="mainLabel" destination="2ho-sn-Zhg" id="KeA-8Y-03u"/>
-                        <outlet property="mainThumbnail" destination="LPl-XZ-prb" id="7em-zl-4tr"/>
+                        <outlet property="mainThumbnail" destination="LPl-XZ-prb" id="NW4-5w-CL3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEX-nJ-ZqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
