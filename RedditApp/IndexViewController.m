@@ -54,7 +54,7 @@
     
     IndexViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[IndexViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        cell = [[IndexViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"IndexViewCell"];
     }
     cell.textLabel.text = [[self.item objectAtIndex:indexPath.row]valueForKey:@"title"];
     cell.detailTextLabel.text = [[self.item objectAtIndex:indexPath.row]valueForKey:@"subreddit"];

@@ -49,7 +49,6 @@
              }];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
-        
     }];
 }
 
@@ -57,20 +56,17 @@
     self.mainLabel.text = [self.item valueForKey:@"title"];
     
     self.details = [NSMutableArray new];
-    [self.details addObject:[[self.item valueForKey:@"score"]stringValue]];
-    [self.details addObject:[self.item valueForKey:@"author"]];
-    [self.details addObject:[self.item valueForKey:@"subreddit"]];
-    [self.details addObject:[[self.item valueForKey:@"num_comments"]stringValue]];
-    [self.details addObject:[self.item valueForKey:@"domain"]];
-    [self.details addObject:[self.item valueForKey:@"over_18"]];
+    [self.details addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"score", @"key", [[self.item valueForKey:@"score"]stringValue], @"value", nil]];
+    [self.details addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"author", @"key", [self.item valueForKey:@"author"], @"value", nil]];
+    [self.details addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"subreddit", @"key", [self.item valueForKey:@"subreddit"], @"value", nil]];
+    [self.details addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"num_comments", @"key", [[self.item valueForKey:@"num_comments"]stringValue], @"value", nil]];
+    [self.details addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"domain", @"key", [self.item valueForKey:@"domain"], @"value", nil]];
+    [self.details addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"over_18", @"key", [[self.item valueForKey:@"over_18"]stringValue], @"value", nil]];
     
     @try {
         [self.detailsCollectionView reloadData];
     }
     @catch (NSException *exception) {}
-    
-//    [self.detailsCollectionView reloadItemsAtIndexPaths:[self.detailsCollectionView indexPathsForVisibleItems]];
-//    [self.detailsCollectionView reloadData];
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [self.item valueForKey:@"thumbnail"]]];
     
@@ -102,11 +98,8 @@
     
     DetailsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    cell.title.text = @"hello";
-    cell.label.text = [self.details objectAtIndex:indexPath.row];
-    
-//    UIImageView *recipeImageView = (UIImageView *)[cell viewWithTag:100];
-//    recipeImageView.image = [UIImage imageNamed:[recipeImages objectAtIndex:indexPath.row]];
+    cell.title.text = [[self.details objectAtIndex:indexPath.row]objectForKey:@"key"];
+    cell.label.text = [[self.details objectAtIndex:indexPath.row]objectForKey:@"value"];
     
     return cell;
 }
